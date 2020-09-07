@@ -1,5 +1,19 @@
 # appleJuice Client Setup für Windows
 
+![](https://github.com/applejuicenet/setup/workflows/release/badge.svg)
+
+Einfaches Windows Setup, welches den appleJuice Client installiert.
+
+Inhalt:
+- appleJuice Client 32bit
+- appleJuice Client 64bit
+- appleJuice Java GUI
+
+Inkl. voll funktionsfähiger Startmenü und Desktop Verknüpfungen.
+Außerdem wir das `ajfsp` Protokoll mit dem GUI verknüpft, sofern es installiert wurde.
+
+### Details
+
 Die appleJuice Client JAR `ajcore.jar` wird über einen sogenannten Wrapper gestartet, was vieles vereinfacht:
 
 - es müssen keine Verknüpfungen angelegt oder angepasst werden :sunglasses:
@@ -14,9 +28,10 @@ Die appleJuice Client JAR `ajcore.jar` wird über einen sogenannten Wrapper gest
 
 Die einzelnen Wrapper wurden mit dem Tool [Launch4j](http://launch4j.sourceforge.net) erstellt (siehe `.xml` Dateien).
 
-# Setup
+### Setup
 
-Das Setup wurde mit [InstallForge](https://installforge.net) erstellt.
-Die hier im Ordner liegende `.ifp` Datei kann einfach mit `Installforge` geöffnet werden.
+Das Setup wird mit [NSIS](https://nsis.sourceforge.io/Main_Page) erstellt, was es ermöglicht, dies einfach stets aktuell zu halten.
+ 
+Die hier im Ordner liegende `.nsi` Datei kann einfach mit dem `NSIS` Compiler geöffnet werden.
 
-Das setup löscht eine etwaig vorhandene `ajnetmask.dll` im `?:\Windows\system32\` Ordner, da diese dort nicht (_mehr_) benötigt wird. :put_litter_in_its_place: 
+Das Setup löscht eine etwaig vorhandene `ajnetmask.dll` im `?:\Windows\system32\` Ordner, da diese dort nicht (_mehr_) benötigt wird. :put_litter_in_its_place: 

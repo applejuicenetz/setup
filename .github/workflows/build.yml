@@ -1,0 +1,23 @@
+name: build
+
+on:
+    workflow_dispatch:
+
+jobs:
+    setup:
+        runs-on: ubuntu-20.04
+        steps:
+            -   name: Install dependencies
+                run: sudo apt-get install -y nsis
+
+            -   name: Checkout code
+                uses: actions/checkout@v2
+
+            -   name: Build setup
+                run: |
+                    bash nsis_applejuice_multi.sh
+
+            -   uses: actions/upload-artifact@v2
+                with:
+                    name: appleJuice-setup.exe
+                    path: appleJuice-setup.exe
