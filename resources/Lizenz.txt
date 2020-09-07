@@ -1,0 +1,50 @@
+Willkommen bei appleJuice. Es ist wichtig das Sie die Lizenzbestimmungen sorgfältig durchlesen, bevor Sie appleJuice Client bzw. Server installieren.
+Diese Bedingungen, wenn Sie von Ihnen akzeptiert wurden, bilden eine Lizenzvereinbarung zwischen dem Verfasser dieser Lizenz und Ihnen ("Sie", "Ihnen" oder "Nutzer") für die Nutzung vom appleJuice Client oder Server, im folgenden als "AJ" bezeichnet.
+
+Um den AJ nutzen zu dürfen, müssen Sie vorher die Lizenzbestimmungen sorgfältig durchgelesen und diese durch Drücken des "YES"- bzw. "JA"-Buttons/- Schalters vorm Installieren akzeptiert haben. Wenn Sie minderjährig sind müssen Sie die Lizenzbestimmung Ihren Erziehungsberechtigten zeigen und diese von Ihren Erziehungsberechtigten durch Drücken des "YES"- bzw. "JA"-Buttons/-Schalters akzeptieren lassen, bevor Sie mit der Installation fortfahren.
+
+WENN SIE BEIM SETUP "NEIN" DRÜCKEN, SIND SIE NICHT IN DER LAGE AJ ZU INSTALLIEREN.
+
+1.Was Sie dürfen:
+1.1 Die Nutzung der Software unterliegt den Bestimmungen dieser Vereinbarung.
+1.2 Alle Veränderungen oder Neuerungen der aktuellen Software unterliegen ebenfalls, wenn nicht explizit anders dargestellt, den Bestimmungen dieser Vereinbarung.
+
+2. Was Sie nicht dürfen:
+Sie dürfen nur für Ihren persönlichen Gebrauch Kopien der Software anfertigen. Sie dürfen die Software nicht an Dritte weiterverkaufen oder weitergeben ohne unser Einverständnis. Sie stimmen zu die Software nicht zu verwenden für:
+2.1 - Übermittlung von Daten die ungesetzlich, beleidigend, bedrohlich, pervers, erniedrigend, diffamierend, vulgär, obszön, die Persönlichkeitssphäre einer anderen Person verletzend, extremistisch oder rassistisch, ethnisch oder anderweitig unmoralisch sind
+2.2 - Sich als eine andere Person auszugeben, oder so zu tun als wäre man diese.
+2.3 - Header, oder andere Merkmale die eine Datei oder Ihren Ursprung beschreiben, zu verändern, um diese Informationen zu verschleiern, oder um andere in die Irre zu führen. Dies wird im folgenden als „faken“ bezeichnet. Wenn Sie feststellen, dass Sie eine gefakte Datei heruntergeladen haben, sind Sie verpflichtet diese nicht weiter freizugeben, sprich zu löschen, oder in ein Verzeichnis zu kopieren, welches nicht mitgeshared wird, bzw. die veränderten Informationen richtig zu stellen.
+2.4 - Daten übermitteln oder darauf zu zugreifen, die Sie auf Grund von vorliegenden Gesetzen oder fehlenden Absprachen nicht übermitteln dürfen. Diese können Sie dem Datenschutzblatt der Datenschutzbehörde entnehmen. Dieses können Sie sich kostenlos bestellen. Siehe Telefonbuch.
+2.5 - Daten übermitteln oder drauf zu zugreifen, das irgend ein Patent, Warenzeichen, Geheimnis, Copyright oder andere Rechte einer Partei verletzt.
+2.6 - Daten übermitteln, die Viren oder anderen Computercode, Dateien oder Programme enthalten, die die Funktionen irgendeiner Software, Hardware oder Telekommunikations-Equipment stören, beeinträchtigen oder zerstören.
+2.7 - Die Software zu verändern, oder das Netzwerk, welches über die Software generiert wird zu stören.
+2.8 - Vorsätzliche oder fahrlässige Verletzung von nationalen und internationalen Gesetzen, sowie Sicherheitsvereinbarung und Regulierungen, die dem Gesetz unterliegen. Absichtlich oder unabsichtlich die auf Sie als Nutzer zutreffenden lokalen, nationalen oder staatlichen Gesetze, oder Vereinbarungen und jegliche Reglementierungen, die den de facto Status eines Gesetzes haben zu verletzen.
+2.9 - Datenverkehr mitschneiden oder Suchanfragen starten um Informationen über andere Nutzer zu erhalten.
+2.10 - Das Nachspionieren hinter anderen Nutzern, oder das Sammeln persönlicher Daten über diese.
+2.11 - Sie nehmen zur Kenntnis und stimmen zu, das AJ sich vorbehält Daten und wenn erforderlich, identifizierende Informationen seiner Nutzer zu sammeln, um das Gesetz, oder Einschränkungen zu erfüllen, die im folgenden näher definiert werden:
+2.11.1 - Übereinstimmung mit lokalen Gesetzen
+2.11.2 - Durchsetzung der Lizenzbestimmungen
+2.11.3 - Reaktion auf Forderungen und Verletzungen Rechte Dritter, oder den Schutz der Rechte und des Eigentums, sowie um die persönlichen Daten AJ´s zu schützen
+
+3. Weitere Erlaubnisse und Verbote:
+3.1 - Sicherheitskopien der Software müssen alle Lizenzbestimmungen und Copyright-Informationen des Originals enthalten.
+3.2 - Außer wenn es ausdrücklich in den Bestimmungen erlaubt ist, ist es Ihnen verboten die Software zu verändern, de-compilieren, disassemblieren, vervielfältigen, verleihen, verleasen, verkaufen, Derivate davon erstellen. Ihre Rechte unter dieser Lizenz gehen automatisch verloren ohne Benachrichtigung von AJ wenn Sie irgendeine Bestimmung verletzen.
+
+4. Dinge die Sie wissen sollten wenn sie AJ nutzen:
+4.1 Wir fügen hinzu, löschen oder verändern einige oder alle Funktionen der Software die durch AJ angeboten werden. Dies kann den Download von notwendigen Modulen nach sich ziehen.
+4.2 Mit dem Akzeptieren der Bestimmungen stimmen Sie zu, das AJ die Funktionen der Software zu jeder Zeit ohne vorherigen Ankündigungen verändern oder entfernen darf.
+4.3 AJ behält sich das Recht vor die Bestimmungen und Konditionen der Lizenz ohne direkte Benachrichtigungen an Sie zu verändern. Die weitere Verwendung der Software nach den Veränderungen der Lizenzbestimmung(en) beinhaltet automatisch die Aktzeptanz dieser Veränderungen.
+
+5. Dinge die Sie tun müssen wenn Sie AJ nutzen:
+Es ist Ihre eigene Verantwortung sicherzustellen, das Sie alle hier genannten Vereinbarungen, Genehmigungen und Freigaben in Daten, die von anderen Nutzern besessen oder kontrolliert werden zu, achten und die Sie übertragen, bereitstellen oder auf die Sie durch AJ Zugriff erlangen. AJ überprüft nicht (und hat daher keine Kenntnis über) die Daten, die mit der Software übertragen werden.
+5.1 AJ ist in keiner Weise in Verantwortung zu nehmen:
+5.1.1 für jegliche Vergehen, Veränderung in Daten oder jegliche Art von Verlust, der durch das Übertragen, durch die Software entsteht, bzw.
+5.1.2 falls Sie mit Daten konfrontiert werden, die Sie für beleidigend, inakzeptabel oder diffamierend halten
+
+6. Copyright Verstöße:
+AJ respektiert Copyright und andere Gesetze. AJ verlangt von all Seinen Nutzern dies ebenfalls zu tun, oder entzieht Ihnen anderen Falls die Lizenz Als eine Bedingung der Benutzung von AJ stimmen Sie zu das Sie die Software nicht dazu zu Benutzen,das geistige Eigentum oder andere Besitzrechte Dritter in irgend einer Form zu verletzen. Das unauthorisierte Kopieren, Veröffentlichen, Modifizieren, öffentlich zu Präsentieren oder zu Veröffentlichen. Die ist dem ursprünglichem Verfasser der Lizenz vorbehalten. Wenn Sie gegen, Sie betreffende Gesetze, verstoßen, können Sie dafür belangt werden.
+
+7. AJ übernimmt keine Verantwortung, wenn Sie durch Software Dritter, wie z.B. Plug-Ins, Bots oder ähnlichem Schaden nehmen.
+8. Für AJ treffen die Softwaregesetze der Bundesrepublik Deutschland zu. Gerichtsstand [Landesgericht Frankfurt (Oder)]
+9. Wenn auf den Download-Zugriff gelinkt wird bzw. eine Veröffentlichung mit Angabe einer Adresse zum herunterladen des AJ gemacht wird, gelten nicht eventuell in diesem Zusammenhang erstellte Lizenzbedingungen, sondern es sind weiterhin die des AJ wirksam.
+10. Jeglicher Schaden, der durch heruntergeladene Software oder Daten an Ihrem System oder Ihrer Hardware entsteht, bzw. der Verlust von Daten, der eventuell durch das ausführen oder öffnen dieser Daten entsteht, entsteht durch Ihr eigenes Verschulden und es ist Ihr eigenes Risiko dies zu tun.
