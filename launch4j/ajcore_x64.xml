@@ -12,9 +12,9 @@
   <restartOnCrash>false</restartOnCrash>
   <icon>../resources/ajcore.ico</icon>
   <jre>
-    <path>..\Java</path>
+    <path>Java</path>
     <bundledJre64Bit>true</bundledJre64Bit>
-    <bundledJreAsFallback>true</bundledJreAsFallback>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
     <minVersion>1.7</minVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64</runtimeBits>
