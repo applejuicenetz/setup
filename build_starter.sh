@@ -2,9 +2,7 @@
 
 set -e
 
-# macOS
-# brew install upx
-# brew install launch4j
+# macOS: brew install libxml2 upx launch4j
 
 cd launch4j/
 

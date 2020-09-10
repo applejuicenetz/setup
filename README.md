@@ -16,17 +16,17 @@ Außerdem wir das `ajfsp` Protokoll mit dem GUI verknüpft, sofern es installier
 
 Die appleJuice Client JAR `ajcore.jar` wird über einen sogenannten Wrapper gestartet, was vieles vereinfacht:
 
-- es müssen keine Verknüpfungen angelegt oder angepasst werden :sunglasses:
+- es müssen keine (komplizierten) Verknüpfungen angelegt oder angepasst werden :sunglasses:
 - es wird **immer** das **richtige** Java Runtime Environment (JRE) ausgewählt (32/64bit) :exclamation:
 - man kann und sollte das installierte JRE in seinem Windows aktuell halten :dizzy:
 - die Zuweisung des RAMs mittels `-Xmx` wird einfach über die korrespondierende `.l4j.ini` Datei angepasst :heart_eyes:
 - es gibt einen **Splash Screen** für den Core :rocket: 
-- 32bit und 64bit werden **parallel** installiert :v:
-- startet man die 32/64bit Version ohne installiertes Java 32/64bit, wird man auf das Fehlen hingewiesen (inkl Download Link) :wink:
-- es gibt einen Wrapper für den `-c` bzw `--configinjardir` Modus (für den Betrieb auf anderen Laufwerk) :floppy_disk:
+- 32bit und 64bit können **parallel** installiert und betrieben werden :v:
+- startet man die 32/64bit Version ohne installiertes Java 32/64bit, wird man auf das Fehlen hingewiesen (inkl. Download Link) :wink:
+- es gibt einen Wrapper für den `-c` bzw. `--configinjardir` Modus (für den Betrieb auf anderen Laufwerk) :floppy_disk:
 - es gibt einen Wrapper für den `--nogui` Modus (zum validieren bei etwaigen Fehlern) :bug:
 
-Die einzelnen Wrapper wurden mit dem Tool [Launch4j](http://launch4j.sourceforge.net) erstellt (siehe `.xml` Dateien).
+Die einzelnen Wrapper wurden mit dem Tool [Launch4j](http://launch4j.sourceforge.net) erstellt (siehe [launch4j](./launch4j/) Ordner).
 
 ### Setup
 
