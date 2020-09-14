@@ -1,5 +1,8 @@
 # appleJuice Client Setup für Windows
 
+![](https://img.shields.io/github/license/applejuicenet/setup)
+![](https://img.shields.io/github/v/release/applejuicenet/setup)
+![](https://img.shields.io/github/downloads/applejuicenet/setup/total)
 ![](https://github.com/applejuicenet/setup/workflows/release/badge.svg)
 
 Einfaches Windows Setup, welches den appleJuice Client installiert.
