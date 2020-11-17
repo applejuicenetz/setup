@@ -4,14 +4,14 @@ set -ex
 
 CURL_OPTS="--fail --silent --location"
 
-AJCORE_JAR="https://github.com/applejuicenet/core/releases/latest/download/ajcore.jar"
-AJGUI_ZIP="https://github.com/applejuicenet/gui-java/releases/latest/download/AJCoreGUI.zip"
+AJCORE_JAR="https://github.com/applejuicenetz/core/releases/latest/download/ajcore.jar"
+AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.zip"
 
-AJNETMASK_x86="https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
-AJNETMASK_x64="https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
+AJNETMASK_x86="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
+AJNETMASK_x64="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
 
-TRAYICON_x86="https://github.com/applejuicenet/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
-TRAYICON_x64="https://github.com/applejuicenet/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
+TRAYICON_x86="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
+TRAYICON_x64="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
 
 # Core
 curl ${CURL_OPTS} -o ./build/ajcore.jar ${AJCORE_JAR}
