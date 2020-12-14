@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\ajcore.jar</jar>
+  <jar>ajcore.jar</jar>
   <outfile>../starter/x86/ajcore.exe</outfile>
   <chdir>.</chdir>
   <priority>normal</priority>
@@ -11,6 +11,9 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <icon>../resources/ajcore.ico</icon>
+  <singleInstance>
+    <mutexName>appleJuice Client</mutexName>
+  </singleInstance>
   <jre>
     <path>Java</path>
     <bundledJre64Bit>false</bundledJre64Bit>
