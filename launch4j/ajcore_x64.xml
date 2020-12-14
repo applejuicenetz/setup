@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\ajcore.jar</jar>
+  <jar>ajcore.jar</jar>
   <outfile>../starter/x64/ajcore.exe</outfile>
   <chdir>.</chdir>
   <priority>normal</priority>
@@ -10,7 +10,10 @@
   <supportUrl>https://applejuicenet.cc/</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
-  <icon>../resources/ajcore.ico</icon>
+  <icon>..\resources\ajcore.ico</icon>
+  <singleInstance>
+    <mutexName>appleJuice Client</mutexName>
+  </singleInstance>
   <jre>
     <path>Java</path>
     <bundledJre64Bit>true</bundledJre64Bit>
@@ -27,9 +30,9 @@
     <timeoutErr>true</timeoutErr>
   </splash>
   <messages>
-    <startupErr>Beim starten des appleJuice Clients ist ein Fehler aufgetreten.</startupErr>
+    <startupErr>Beim starten des appleJuice Core ist ein Fehler aufgetreten.</startupErr>
     <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
-    <jreVersionErr>Der appleJuice Client benötigt das 64bit Java Runtime Environment</jreVersionErr>
+    <jreVersionErr>Dieser appleJuice Core benötigt das 64bit Java Runtime Environment</jreVersionErr>
     <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
     <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
   </messages>

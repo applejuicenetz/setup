@@ -15,9 +15,8 @@ jobs:
 
             -   name: Build setup
                 run: |
-                    bash nsis_applejuice_multi.sh
+                    bash build_nsis.sh
 
             -   uses: actions/upload-artifact@v2
                 with:
-                    name: appleJuice-setup.exe
-                    path: appleJuice-setup.exe
+                    path: build/*.exe
