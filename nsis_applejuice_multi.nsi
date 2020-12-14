@@ -91,7 +91,7 @@ Section "appleJuice Core (x64)" SectionCoreX64
     File /r starter\x64\*
     File /r build\x64\*
 
-    CreateShortcut "$desktop\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
+    CreateShortcut "$desktop\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore_nogui.exe"
     CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
     CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, nogui).lnk" "$INSTDIR\Core\x64\ajcore_nogui.exe"
     CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, noprofile).lnk" "$INSTDIR\Core\x64\ajcore_noprofile.exe"
