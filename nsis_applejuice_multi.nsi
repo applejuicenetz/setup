@@ -25,7 +25,7 @@
 ;--------------------------------
 ;Installer Pages
   !insertmacro MUI_PAGE_WELCOME
-  !insertmacro MUI_PAGE_LICENSE "resources\Lizenz.txt"
+  ; !insertmacro MUI_PAGE_LICENSE "resources\Lizenz.txt"
   !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
@@ -65,37 +65,53 @@ SectionEnd
 
 ;--------------------------------
 ;appleJuice Core (x86)
-Section "appleJuice Core (x86)" SectionCoreX86
-    SetOutPath "$INSTDIR\Core"
-    File "build\ajcore.jar"
+SectionGroup "appleJuice Client (x86)"
+    Section "Client" SectionCoreX86
+        SetOutPath "$INSTDIR\Core"
+        File "build\ajcore.jar"
 
-    SetOutPath "$INSTDIR\Core\x86"
+        SetOutPath "$INSTDIR\Core\x86"
 
-    File /r starter\x86\*
-    File /r build\x86\*
+        File /r starter\x86\*
+        File /r build\x86\*
 
-    CreateShortcut "$desktop\appleJuice Core (x86).lnk" "$INSTDIR\Core\x86\ajcore.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86).lnk" "$INSTDIR\Core\x86\ajcore.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86, nogui).lnk" "$INSTDIR\Core\x86\ajcore_nogui.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86, noprofile).lnk" "$INSTDIR\Core\x86\ajcore_noprofile.exe"
-SectionEnd
+        CreateShortcut "$desktop\appleJuice Core (x86).lnk" "$INSTDIR\Core\x86\ajcore.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86).lnk" "$INSTDIR\Core\x86\ajcore.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86, nogui).lnk" "$INSTDIR\Core\x86\ajcore_nogui.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x86, noprofile).lnk" "$INSTDIR\Core\x86\ajcore_noprofile.exe"
+    SectionEnd
+
+        Section "Java" SectionJavaX86
+            !define JRE_X86 "https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x32/jre/hotspot/normal/adoptopenjdk?project=jdk"
+            inetc::get /MODERNPOPUP "${JRE_X86}" "$INSTDIR\Core\x86\Java.zip" /END
+        SectionEnd
+SectionGroupEnd
 
 ;--------------------------------
 ;appleJuice Core (x64)
-Section "appleJuice Core (x64)" SectionCoreX64
-    SetOutPath "$INSTDIR\Core"
-    File "build\ajcore.jar"
+SectionGroup "appleJuice Core (x64)"
+    Section "Client" SectionCoreX64
+        SetOutPath "$INSTDIR\Core"
+        File "build\ajcore.jar"
 
-    SetOutPath "$INSTDIR\Core\x64"
+        SetOutPath "$INSTDIR\Core\x64"
 
-    File /r starter\x64\*
-    File /r build\x64\*
+        File /r starter\x64\*
+        File /r build\x64\*
 
-    CreateShortcut "$desktop\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, nogui).lnk" "$INSTDIR\Core\x64\ajcore_nogui.exe"
-    CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, noprofile).lnk" "$INSTDIR\Core\x64\ajcore_noprofile.exe"
-SectionEnd
+        CreateShortcut "$desktop\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64).lnk" "$INSTDIR\Core\x64\ajcore.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, nogui).lnk" "$INSTDIR\Core\x64\ajcore_nogui.exe"
+        CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}\appleJuice Core (x64, noprofile).lnk" "$INSTDIR\Core\x64\ajcore_noprofile.exe"
+    SectionEnd
+
+    Section "Java" SectionJavaX64
+        !define JRE_X64 "https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
+        # !define JRE_X64 "https://api.adoptopenjdk.net/v3/binary/version/jdk8u242-b08/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
+
+        inetc::get /MODERNPOPUP "${JRE_X64}" "$INSTDIR\Core\x64\Java.zip" /END
+    SectionEnd
+SectionGroupEnd
 
 ;--------------------------------
 ;appleJuice GUI
@@ -117,7 +133,9 @@ SectionEnd
 ; Section Descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SectionCoreX86} "32bit Client"
+!insertmacro MUI_DESCRIPTION_TEXT ${SectionJavaX86} "32bit JRE"
 !insertmacro MUI_DESCRIPTION_TEXT ${SectionCoreX64} "64bit Client"
+!insertmacro MUI_DESCRIPTION_TEXT ${SectionJavaX64} "64bit JRE"
 !insertmacro MUI_DESCRIPTION_TEXT ${SectionGUI} "Userinterface"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 !insertmacro MUI_LANGUAGE "German"
