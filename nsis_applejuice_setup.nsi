@@ -55,11 +55,10 @@
 ;Installer Settings
     !insertmacro MUI_PAGE_COMPONENTS
     !insertmacro MUI_PAGE_INSTFILES
-    !insertmacro MUI_LANGUAGE "German"
 
 ;--------------------------------
 ;Section Options
-Section /o "Silent"
+Section /o "Silent" SECTION_SILENT
     DetailPrint "silent install"
 
     StrCpy $ARGUMENTS " /S"
@@ -67,10 +66,10 @@ SectionEnd
 
 ;--------------------------------
 ;Sections appleJuice
-SectionGroup /e "appleJuice"
+SectionGroup /e "appleJuice" SECTION_GROUP_APPLEJUICE
     ;--------------------------------
     ;appleJuice Core x86
-    Section "Core (x86)" CORE_X86
+    Section "Core (x86)" SECTION_CORE_X86
         Addsize ${CORE_X86_SIZE}
 
         DetailPrint "download ${CORE_X86_NAME}"
@@ -80,7 +79,7 @@ SectionGroup /e "appleJuice"
 
     ;--------------------------------
     ;appleJuice Core x64
-    Section "Core (x64)" CORE_X64
+    Section "Core (x64)" SECTION_CORE_X64
         Addsize ${CORE_X64_SIZE}
 
         DetailPrint "download ${CORE_X64_NAME}"
@@ -90,7 +89,7 @@ SectionGroup /e "appleJuice"
 
     ;--------------------------------
     ;appleJuice Java GUI
-    Section "Java GUI"
+    Section "Java GUI" SECTION_GUI_JAVA
         Addsize ${GUI_JAVA_SIZE}
 
         DetailPrint "download ${GUI_JAVA_NAME}"
@@ -100,7 +99,7 @@ SectionGroup /e "appleJuice"
 
     ;--------------------------------
     ;appleJuice Collector
-    Section /o "Collector"
+    Section /o "Collector" SECTION_COLLECTOR
         Addsize ${COLLECTOR_SIZE}
 
         DetailPrint "download ${COLLECTOR_NAME}"
@@ -112,10 +111,10 @@ SectionGroupEnd
 
 ;--------------------------------
 ;Sections Andere
-SectionGroup /e "Andere"
+SectionGroup /e "Andere" SECTION_GROUP_ANDERE
     ;--------------------------------
     ;appleJuice Apfelmus GUI
-    Section /o "Apfelmus GUI"
+    Section /o "Apfelmus GUI" SECTION_GUI_APFELMUS
         Addsize ${GUI_APFELMUS_SIZE}
 
         DetailPrint "download ${GUI_APFELMUS_NAME}"
@@ -125,7 +124,7 @@ SectionGroup /e "Andere"
 
     ;--------------------------------
     ;appleJuice ApplePulp GUI
-    Section /o "ApplePulp GUI"
+    Section /o "ApplePulp GUI" SECTION_GUI_APPLEPULP
         Addsize ${GUI_APPLEPULP_SIZE}
 
         DetailPrint "download ${GUI_APPLEPULP_NAME}"
@@ -135,11 +134,26 @@ SectionGroup /e "Andere"
 
 SectionGroupEnd
 
+;--------------------------------
+; Section Descriptions
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_SILENT} "unbeaufsichtigten Installation aller ausgewählten Komponenten"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_APPLEJUICE} "appleJuiceNETZ Komponenten"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_CORE_X86} "32bit Core"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_CORE_X64} "64bit Core"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_JAVA} "offizielles JavaGUI"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_COLLECTOR} "Informationen Sammler"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_ANDERE} "optionale Komponenten"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APFELMUS} "Community GUI"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APPLEPULP} "Community GUI"
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+!insertmacro MUI_LANGUAGE "German"
+
 Function .onInit
   ${If} ${RunningX64}
-    SectionSetFlags ${CORE_X86} 0
+    SectionSetFlags ${SECTION_CORE_X86} 0
   ${else}
     IntOp $0 0 | ${SF_RO}
-    SectionSetFlags ${CORE_X64} $0
+    SectionSetFlags ${SECTION_CORE_X64} $0
   ${endif}
 FunctionEnd
