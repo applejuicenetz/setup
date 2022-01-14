@@ -16,7 +16,7 @@ jobs:
 
             -   name: Build project
                 run: |
-                    bash nsis_applejuice_multi.sh
+                    bash build_nsis.sh
 
             -   name: Upload Release Asset
                 id: upload-release-asset
@@ -28,5 +28,4 @@ jobs:
                     body: >
                         appleJuice setup
                     files: >
-                        appleJuice-setup.exe
-                        appleJuice-setup.exe.sha256.txt
+                        build/

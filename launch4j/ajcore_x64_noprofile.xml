@@ -2,9 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\ajcore.jar</jar>
+  <jar>ajcore.jar</jar>
   <outfile>../starter/x64/ajcore_noprofile.exe</outfile>
-  <errTitle></errTitle>
   <cmdLine>--configinjardir</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
