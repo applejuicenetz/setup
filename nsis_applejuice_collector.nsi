@@ -26,7 +26,7 @@
 
 ;--------------------------------
 ;Links
-    !define LINK_COLLECTOR "https://github.com/applejuicenetz/collector/releases/latest/download/AJCollector.exe"
+    !define LINK_COLLECTOR "https://github.com/applejuicenetz/collector/releases/latest/download/AJCollector.jar"
     !define LINK_JRE_X64 "https://api.adoptium.net/v3/binary/latest/17/ga/windows/x64/jre/hotspot/normal/eclipse?project=jdk"
     !define LINK_JRE_X86 "https://api.adoptium.net/v3/binary/latest/17/ga/windows/x86/jre/hotspot/normal/eclipse?project=jdk"
 
@@ -60,8 +60,10 @@ Section ""
 
     SetOutPath "$INSTDIR"
 
+    File /r starter\collector\*
+
     DetailPrint "download ${PRODUCT}"
-    INetC::get /NOCANCEL "${LINK_COLLECTOR}" "AJCollector.exe" /END
+    INetC::get /NOCANCEL "${LINK_COLLECTOR}" "AJCollector.jar" /END
     Pop $0
     DetailPrint $0
 
