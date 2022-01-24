@@ -16,6 +16,7 @@
     !define PRODUCT_SHORT "JavaGUI"
     !define EXE_NAME "AJCoreGUI"
     !define REG_URL_NAME "${COMPANY}.URI.${PRODUCT_SHORT}"
+    !define REG_EXT_NAME "${COMPANY}.EXT.${PRODUCT_SHORT}"
     !define INSTALLSIZE 124500
 
     InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallLocation"
@@ -119,15 +120,21 @@ Section ""
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoModify" 1
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoRepair" 1
 
-    # create ajfsp protocol (legacy)
+    # create ajfsp protocol
     WriteRegStr HKCR "ajfsp" "" "URL: ajfsp Protocol"
     WriteRegStr HKCR "ajfsp" "URL Protocol" ""
+
+    # create ajl file type
+    WriteRegStr HKCR ".ajl" "" "appleJuice Linkliste"
+    WriteRegStr HKCR ".ajl" "Content Typ" "application/text"
+    WriteRegStr HKCR ".ajl" "PerceivedTyp" "text"
 
     # create unique ajfsp capabilities
     WriteRegStr HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities" "ApplicationName" "${PRODUCT_SHORT}"
     WriteRegStr HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities" "ApplicationIcon" '"$INSTDIR\${EXE_NAME}.exe",0'
     WriteRegStr HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities" "ApplicationDescription" "appleJuice GUI"
     WriteRegStr HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities\URLAssociations" "ajfsp" "${REG_URL_NAME}"
+    WriteRegStr HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities\FileAssociations" ".ajl" "${REG_EXT_NAME}"
     WriteRegStr HKLM "SOFTWARE\RegisteredApplications" "${PRODUCT_SHORT}" "Software\\${COMPANY}\\${PRODUCT_SHORT}\\Capabilities"
     
     # create unique ajfsp classes
@@ -135,6 +142,11 @@ Section ""
     WriteRegStr HKLM "SOFTWARE\Classes\${REG_URL_NAME}" "URL Protocol" ""
     WriteRegStr HKLM "SOFTWARE\Classes\${REG_URL_NAME}\DefaultIcon" "" '"$INSTDIR\${EXE_NAME}.exe",0'
     WriteRegStr HKLM "SOFTWARE\Classes\${REG_URL_NAME}\shell\open\command" "" '"$INSTDIR\${EXE_NAME}.exe" "%1"'
+
+    # create unique ajl classes
+    WriteRegStr HKLM "SOFTWARE\Classes\${REG_EXT_NAME}" "" "appleJuice Linkliste"
+    WriteRegStr HKLM "SOFTWARE\Classes\${REG_EXT_NAME}\DefaultIcon" "" '"$INSTDIR\${EXE_NAME}.exe",0'
+    WriteRegStr HKLM "SOFTWARE\Classes\${REG_EXT_NAME}\shell\open\command" "" '"$INSTDIR\${EXE_NAME}.exe" "%1"'
 
     # create unique ajfsp handler
     WriteRegStr HKCR "${REG_URL_NAME}" "" "URL:ajfsp"
@@ -150,6 +162,7 @@ Section "Uninstall"
     DeleteRegKey HKLM "SOFTWARE\Classes\${REG_URL_NAME}"
     DeleteRegKey HKLM "SOFTWARE\${COMPANY}\${PRODUCT_SHORT}\Capabilities"
     DeleteRegKey HKCR "${REG_URL_NAME}"
+    DeleteRegKey HKCR "${REG_EXT_NAME}"
     Delete "$desktop\${PRODUCT}.lnk"
     Delete "$SMPROGRAMS\${COMPANY}\${PRODUCT}.lnk"
     RMDir /r /REBOOTOK $INSTDIR
