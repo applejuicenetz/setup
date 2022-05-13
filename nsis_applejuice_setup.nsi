@@ -47,14 +47,16 @@
 
 ;--------------------------------
 ;Interface Settings
-    !define MUI_ICON "resources\applejuice.ico"
-    !define MUI_UNICON "resources\applejuice.ico"
+    !define MUI_ICON "resources\appleJuice.ico"
+    !define MUI_UNICON "resources\appleJuice.ico"
     !define MUI_ABORTWARNING
+    !define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;--------------------------------
 ;Installer Settings
     !insertmacro MUI_PAGE_COMPONENTS
     !insertmacro MUI_PAGE_INSTFILES
+    !insertmacro MUI_PAGE_FINISH
 
 ;--------------------------------
 ;Section Options

@@ -12,6 +12,8 @@
 ;General
     Unicode true
     !define COMPANY "appleJuiceNETZ"
+    !define LINK_ABOUT "https://applejuicenetz.github.io"
+    !define LINK_HELP "https://applejuicenetz.github.io/faq/"
     !define PRODUCT "appleJuice JavaGUI"
     !define PRODUCT_SHORT "JavaGUI"
     !define EXE_NAME "AJCoreGUI"
@@ -38,6 +40,7 @@
     !define MUI_ICON "resources\${PRODUCT_SHORT}.ico"
     !define MUI_UNICON "resources\${PRODUCT_SHORT}.ico"
     !define MUI_ABORTWARNING
+    !define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;--------------------------------
 ;Installer Settings
@@ -102,7 +105,10 @@ Section ""
         FindFirst $0 $1 "jdk-*-jre"
         FindClose $0
         Rename /REBOOTOK "$1" "Java"
+    ${else}
+            DetailPrint "existing Java folder found, skip download"
     ${EndIf}
+
     
     WriteUninstaller "uninstaller.exe"
  
@@ -115,7 +121,8 @@ Section ""
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallLocation" '"$INSTDIR"'
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "DisplayIcon" '"$INSTDIR\uninstaller.exe",0'
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Publisher" "${COMPANY}"
-    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "UrlInfoAbout" "https://applejuicenet.cc"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "HelpLink" "${LINK_HELP}"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "UrlInfoAbout" "${LINK_ABOUT}"
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "EstimatedSize" ${INSTALLSIZE}
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoModify" 1
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoRepair" 1

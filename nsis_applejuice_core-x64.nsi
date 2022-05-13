@@ -13,6 +13,8 @@
     Unicode true
     !define ARCH "x64"
     !define COMPANY "appleJuiceNETZ"
+    !define LINK_ABOUT "https://applejuicenetz.github.io"
+    !define LINK_HELP "https://applejuicenetz.github.io/faq/"
     !define PRODUCT "appleJuice Core (${ARCH})"
     !define PRODUCT_SHORT "Core"
     !define INSTALLSIZE 108800
@@ -34,9 +36,10 @@
 
 ;--------------------------------
 ;Interface Settings
-    !define MUI_ICON "resources\applejuice.ico"
-    !define MUI_UNICON "resources\applejuice.ico"
+    !define MUI_ICON "resources\appleJuice.ico"
+    !define MUI_UNICON "resources\appleJuice.ico"
     !define MUI_ABORTWARNING
+    !define MUI_FINISHPAGE_NOAUTOCLOSE
 
 ;--------------------------------
 ;Installer Settings
@@ -62,7 +65,7 @@ Section ""
 
     SetOutPath "$INSTDIR"
 
-    WriteUninstaller "$INSTDIR\uninstaller.exe"
+    WriteUninstaller "uninstaller.exe"
 
     # delete old ajnetmask.dll if still exists
     Delete "$WINDIR\system32\ajnetmask.dll"
@@ -73,7 +76,8 @@ Section ""
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallLocation" '"$INSTDIR"'
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "DisplayIcon" '"$INSTDIR\uninstaller.exe",0'
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Publisher" "${COMPANY}"
-    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "UrlInfoAbout" "https://applejuicenet.cc"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "HelpLink" "${LINK_HELP}"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "UrlInfoAbout" "${LINK_ABOUT}"
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "EstimatedSize" ${INSTALLSIZE}
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoModify" 1
     WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "NoRepair" 1
@@ -113,6 +117,8 @@ Section ""
         FindFirst $0 $1 "jdk-*-jre"
         FindClose $0
         Rename /REBOOTOK "$1" "Java"
+    ${else}
+        DetailPrint "existing Java folder found, skip download"
     ${EndIf}
 
     CreateShortcut "$SMPROGRAMS\${COMPANY}\${PRODUCT}.lnk" "$INSTDIR\ajcore.exe"

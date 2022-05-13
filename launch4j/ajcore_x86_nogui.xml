@@ -7,8 +7,8 @@
   <cmdLine>--nogui</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
-  <downloadUrl>https://www.java.com/de/download/manual.jsp</downloadUrl>
-  <supportUrl>https://applejuicenet.cc/</supportUrl>
+  <downloadUrl>https://adoptium.net/</downloadUrl>
+  <supportUrl>https://applejuicenetz.github.io/faq/</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <icon>../resources/ajcore.ico</icon>
