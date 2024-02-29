@@ -12,7 +12,7 @@ jobs:
                 run: sudo apt-get install -y nsis
 
             -   name: Checkout code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
 
             -   name: Build project
                 run: |

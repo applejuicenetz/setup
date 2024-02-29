@@ -11,12 +11,12 @@ jobs:
                 run: sudo apt-get install -y nsis
 
             -   name: Checkout code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
 
             -   name: Build setup
                 run: |
                     bash build_nsis.sh
 
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v4
                 with:
                     path: build/*.exe

@@ -41,6 +41,10 @@
     !define GUI_APPLEPULP_NAME "ApplePulp.setup.exe"
     !define GUI_APPLEPULP_SIZE 1852
 
+    !define GUI_JUICER_LINK "https://github.com/applejuicenetz/gui-juicer/releases/latest/download/Juicer.setup.exe"
+    !define GUI_JUICER_NAME "Juicer.setup.exe"
+    !define GUI_JUICER_SIZE 13775
+
     !define COLLECTOR_LINK "https://github.com/applejuicenetz/collector/releases/latest/download/AJCollector.setup.exe"
     !define COLLECTOR_NAME "AJCollector.setup.exe"
     !define COLLECTOR_SIZE 128280
@@ -60,7 +64,7 @@
 
 ;--------------------------------
 ;Section Options
-Section /o "Silent" SECTION_SILENT
+Section "Silent" SECTION_SILENT
     DetailPrint "silent install"
 
     StrCpy $ARGUMENTS " /S"
@@ -133,6 +137,15 @@ SectionGroup /e "Andere" SECTION_GROUP_ANDERE
         INetC::get "${GUI_APPLEPULP_LINK}" "${GUI_APPLEPULP_NAME}" /END
         ExecWait '"${GUI_APPLEPULP_NAME}"$ARGUMENTS'
     SectionEnd
+    ;--------------------------------
+    ;appleJuice Juicer GUI
+    Section /o "Juicer GUI" SECTION_GUI_JUICER
+        Addsize ${GUI_JUICER_SIZE}
+
+        DetailPrint "download ${GUI_JUICER_NAME}"
+        INetC::get "${GUI_JUICER_LINK}" "${GUI_JUICER_NAME}" /END
+        ExecWait '"${GUI_JUICER_NAME}"$ARGUMENTS'
+    SectionEnd
 
 SectionGroupEnd
 
@@ -148,6 +161,7 @@ SectionGroupEnd
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_ANDERE} "optionale Komponenten"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APFELMUS} "Community GUI"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APPLEPULP} "Community GUI"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_JUICER} "Community GUI"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 !insertmacro MUI_LANGUAGE "German"
 
