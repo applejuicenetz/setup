@@ -3,7 +3,8 @@
   <dontWrapJar>true</dontWrapJar>
   <headerType>console</headerType>
   <jar>ajcore.jar</jar>
-  <outfile>../starter/x64/ajcore_nogui.exe</outfile>
+  <outfile>..\starter\x64\ajcore_nogui_beta.exe</outfile>
+  <errTitle></errTitle>
   <cmdLine>--nogui</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
@@ -11,18 +12,19 @@
   <supportUrl>https://applejuicenetz.github.io/faq/</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
-  <icon>../resources/ajcore.ico</icon>
+  <manifest></manifest>
+  <icon>..\resources\ajcore.ico</icon>
   <jre>
-    <path>Java</path>
-    <bundledJre64Bit>true</bundledJre64Bit>
-    <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion>1.7</minVersion>
-    <jdkPreference>preferJre</jdkPreference>
-    <runtimeBits>64</runtimeBits>
+    <path>%JAVA_HOME%;%PATH%;Java;runtime</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>true</requires64Bit>
+    <minVersion>21</minVersion>
+    <maxVersion></maxVersion>
     <maxHeapPercent>50</maxHeapPercent>
   </jre>
   <messages>
     <startupErr>Beim starten des appleJuice Clients ist ein Fehler aufgetreten.</startupErr>
+    <jreNotFoundErr>This application requires a Java Runtime Environment.</jreNotFoundErr>
     <jreVersionErr>Der appleJuice Client benötigt ein Java Runtime Environment</jreVersionErr>
     <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
     <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>

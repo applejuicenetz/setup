@@ -3,24 +3,27 @@
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
   <jar>ajcore.jar</jar>
-  <outfile>../starter/x64/ajcore.exe</outfile>
+  <outfile>..\starter\x64\ajcore_beta.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>https://adoptium.net/</downloadUrl>
   <supportUrl>https://applejuicenetz.github.io/faq/</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
-  <icon>../resources/ajcore.ico</icon>
+  <manifest></manifest>
+  <icon>..\resources\ajcore.ico</icon>
   <singleInstance>
     <mutexName>appleJuice Client</mutexName>
+    <windowTitle></windowTitle>
   </singleInstance>
   <jre>
-    <path>Java</path>
-    <bundledJre64Bit>true</bundledJre64Bit>
-    <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion>1.7</minVersion>
-    <jdkPreference>preferJre</jdkPreference>
-    <runtimeBits>64</runtimeBits>
+    <path>%JAVA_HOME%;%PATH%;Java;runtime</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>true</requires64Bit>
+    <minVersion>21</minVersion>
+    <maxVersion></maxVersion>
     <maxHeapPercent>50</maxHeapPercent>
   </jre>
   <splash>
@@ -31,6 +34,7 @@
   </splash>
   <messages>
     <startupErr>Beim starten des appleJuice Core ist ein Fehler aufgetreten.</startupErr>
+    <jreNotFoundErr>This application requires a Java Runtime Environment.</jreNotFoundErr>
     <jreVersionErr>Dieser appleJuice Core benötigt das 64bit Java Runtime Environment</jreVersionErr>
     <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
     <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>

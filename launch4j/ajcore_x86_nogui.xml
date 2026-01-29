@@ -23,7 +23,6 @@
   </jre>
   <messages>
     <startupErr>Beim starten des appleJuice Clients ist ein Fehler aufgetreten.</startupErr>
-    <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
     <jreVersionErr>Der appleJuice Client benötigt ein Java Runtime Environment</jreVersionErr>
     <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
     <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
