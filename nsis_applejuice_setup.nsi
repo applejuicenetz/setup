@@ -10,27 +10,37 @@
 
 ;--------------------------------
 ;General
+    !ifndef SETUP_ARCH
+        !define SETUP_ARCH "amd64"
+    !endif
+    !if "${SETUP_ARCH}" == "amd64"
+        !define SETUP_ARCH_LABEL "AMD64"
+    !else if "${SETUP_ARCH}" == "aarch64"
+        !define SETUP_ARCH_LABEL "ARM64"
+    !else
+        !error "SETUP_ARCH must be amd64 or aarch64"
+    !endif
     Unicode true
-    Name "appleJuice"
-    OutFile "build/appleJuice.setup.exe"
+    Name "appleJuice (${SETUP_ARCH_LABEL})"
+    OutFile "build/appleJuice-windows-${SETUP_ARCH}.exe"
     SetCompressor lzma
     RequestExecutionLevel admin
     ShowInstDetails show
 
     Var ARGUMENTS
+    Var JPACKAGE_ARGUMENTS
 
 ;--------------------------------
 ;Links
-    !define CORE_X86_LINK "https://github.com/applejuicenetz/core/releases/latest/download/AJCore.x86.setup.exe"
-    !define CORE_X86_NAME "AJCore.x86.setup.exe"
-    !define CORE_X86_SIZE 108800
-
-    !define CORE_X64_LINK "https://github.com/applejuicenetz/core/releases/latest/download/AJCore.x64.setup.exe"
-    !define CORE_X64_NAME "AJCore.x64.setup.exe"
+    !ifndef CORE_VERSION
+        !define CORE_VERSION "0.35.185.89"
+    !endif
+    !define CORE_LINK "https://github.com/applejuicenetz/core/releases/download/${CORE_VERSION}/AJCore-windows-${SETUP_ARCH}.exe"
+    !define CORE_NAME "AJCore-windows-${SETUP_ARCH}.exe"
     !define CORE_X64_SIZE 108800
 
-    !define GUI_JAVA_LINK "https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.setup.exe"
-    !define GUI_JAVA_NAME "AJCoreGUI.setup.exe"
+    !define GUI_JAVA_LINK "https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI-windows-${SETUP_ARCH}.exe"
+    !define GUI_JAVA_NAME "AJCoreGUI-windows-${SETUP_ARCH}.exe"
     !define GUI_JAVA_SIZE 124500
 
     !define GUI_APFELMUS_LINK "https://github.com/applejuicenetz/gui-apfelmus/releases/latest/download/Apfelmus.setup.exe"
@@ -45,9 +55,38 @@
     !define GUI_JUICER_NAME "Juicer.setup.exe"
     !define GUI_JUICER_SIZE 13775
 
-    !define COLLECTOR_LINK "https://github.com/applejuicenetz/collector/releases/latest/download/AJCollector.setup.exe"
-    !define COLLECTOR_NAME "AJCollector.setup.exe"
+    !define COLLECTOR_LINK "https://github.com/applejuicenetz/collector/releases/latest/download/AJCollector-windows-${SETUP_ARCH}.exe"
+    !define COLLECTOR_NAME "AJCollector-windows-${SETUP_ARCH}.exe"
     !define COLLECTOR_SIZE 128280
+
+!macro InstallComponent LINK NAME OPTIONS
+    DetailPrint "Download: ${NAME}"
+    INetC::get /SILENT "${LINK}" "$PLUGINSDIR\${NAME}" /END
+    Pop $0
+    ${If} $0 != "OK"
+        DetailPrint "Download fehlgeschlagen: ${NAME} ($0)"
+        Delete "$PLUGINSDIR\${NAME}"
+        SetErrorLevel 1
+        Abort "Download fehlgeschlagen: ${NAME} ($0)"
+    ${EndIf}
+    ClearErrors
+    ExecWait '"$PLUGINSDIR\${NAME}"${OPTIONS}' $0
+    ${If} ${Errors}
+        Delete "$PLUGINSDIR\${NAME}"
+        SetErrorLevel 1
+        Abort "Installer konnte nicht gestartet werden: ${NAME}"
+    ${EndIf}
+    Delete "$PLUGINSDIR\${NAME}"
+    ${If} $0 == 3010
+    ${OrIf} $0 == 1641
+        SetRebootFlag true
+        DetailPrint "Neustart erforderlich: ${NAME}"
+    ${ElseIf} $0 != 0
+        DetailPrint "Installation fehlgeschlagen: ${NAME} (Exit-Code $0)"
+        SetErrorLevel $0
+        Abort "Installation fehlgeschlagen: ${NAME} (Exit-Code $0)"
+    ${EndIf}
+!macroend
 
 ;--------------------------------
 ;Interface Settings
@@ -68,29 +107,18 @@ Section "Silent" SECTION_SILENT
     DetailPrint "silent install"
 
     StrCpy $ARGUMENTS " /S"
+    StrCpy $JPACKAGE_ARGUMENTS " /qn /norestart"
 SectionEnd
 
 ;--------------------------------
 ;Sections appleJuice
 SectionGroup /e "appleJuice" SECTION_GROUP_APPLEJUICE
     ;--------------------------------
-    ;appleJuice Core x86
-    Section "Core (x86)" SECTION_CORE_X86
-        Addsize ${CORE_X86_SIZE}
-
-        DetailPrint "download ${CORE_X86_NAME}"
-        INetC::get "${CORE_X86_LINK}" "${CORE_X86_NAME}" /END
-        ExecWait '"${CORE_X86_NAME}"$ARGUMENTS'
-    SectionEnd
-
-    ;--------------------------------
     ;appleJuice Core x64
-    Section "Core (x64)" SECTION_CORE_X64
+    Section "Core" SECTION_CORE_X64
         Addsize ${CORE_X64_SIZE}
 
-        DetailPrint "download ${CORE_X64_NAME}"
-        INetC::get "${CORE_X64_LINK}" "${CORE_X64_NAME}" /END
-        ExecWait '"${CORE_X64_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${CORE_LINK}" "${CORE_NAME}" "$JPACKAGE_ARGUMENTS"
     SectionEnd
 
     ;--------------------------------
@@ -98,9 +126,7 @@ SectionGroup /e "appleJuice" SECTION_GROUP_APPLEJUICE
     Section "Java GUI" SECTION_GUI_JAVA
         Addsize ${GUI_JAVA_SIZE}
 
-        DetailPrint "download ${GUI_JAVA_NAME}"
-        INetC::get "${GUI_JAVA_LINK}" "${GUI_JAVA_NAME}" /END
-        ExecWait '"${GUI_JAVA_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${GUI_JAVA_LINK}" "${GUI_JAVA_NAME}" "$JPACKAGE_ARGUMENTS"
     SectionEnd
 
     ;--------------------------------
@@ -108,9 +134,7 @@ SectionGroup /e "appleJuice" SECTION_GROUP_APPLEJUICE
     Section /o "Collector" SECTION_COLLECTOR
         Addsize ${COLLECTOR_SIZE}
 
-        DetailPrint "download ${COLLECTOR_NAME}"
-        INetC::get "${COLLECTOR_LINK}" "${COLLECTOR_NAME}" /END
-        ExecWait '"${COLLECTOR_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${COLLECTOR_LINK}" "${COLLECTOR_NAME}" "$JPACKAGE_ARGUMENTS"
     SectionEnd
 
 SectionGroupEnd
@@ -123,9 +147,7 @@ SectionGroup /e "Andere" SECTION_GROUP_ANDERE
     Section /o "Apfelmus GUI" SECTION_GUI_APFELMUS
         Addsize ${GUI_APFELMUS_SIZE}
 
-        DetailPrint "download ${GUI_APFELMUS_NAME}"
-        INetC::get "${GUI_APFELMUS_LINK}" "${GUI_APFELMUS_NAME}" /END
-        ExecWait '"${GUI_APFELMUS_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${GUI_APFELMUS_LINK}" "${GUI_APFELMUS_NAME}" "$ARGUMENTS"
     SectionEnd
 
     ;--------------------------------
@@ -133,29 +155,30 @@ SectionGroup /e "Andere" SECTION_GROUP_ANDERE
     Section /o "ApplePulp GUI" SECTION_GUI_APPLEPULP
         Addsize ${GUI_APPLEPULP_SIZE}
 
-        DetailPrint "download ${GUI_APPLEPULP_NAME}"
-        INetC::get "${GUI_APPLEPULP_LINK}" "${GUI_APPLEPULP_NAME}" /END
-        ExecWait '"${GUI_APPLEPULP_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${GUI_APPLEPULP_LINK}" "${GUI_APPLEPULP_NAME}" "$ARGUMENTS"
     SectionEnd
     ;--------------------------------
     ;appleJuice Juicer GUI
     Section /o "Juicer GUI" SECTION_GUI_JUICER
         Addsize ${GUI_JUICER_SIZE}
 
-        DetailPrint "download ${GUI_JUICER_NAME}"
-        INetC::get "${GUI_JUICER_LINK}" "${GUI_JUICER_NAME}" /END
-        ExecWait '"${GUI_JUICER_NAME}"$ARGUMENTS'
+        !insertmacro InstallComponent "${GUI_JUICER_LINK}" "${GUI_JUICER_NAME}" "$ARGUMENTS"
     SectionEnd
 
 SectionGroupEnd
+
+Section -Finish
+    ${If} ${RebootFlag}
+        SetErrorLevel 3010
+    ${EndIf}
+SectionEnd
 
 ;--------------------------------
 ; Section Descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_SILENT} "unbeaufsichtigten Installation aller ausgewählten Komponenten"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_APPLEJUICE} "appleJuiceNETZ Komponenten"
-!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_CORE_X86} "32bit Core"
-!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_CORE_X64} "64bit Core"
+!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_CORE_X64} "appleJuice Core"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_JAVA} "offizielles JavaGUI"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_COLLECTOR} "Informationen Sammler"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_ANDERE} "optionale Komponenten"
@@ -166,10 +189,17 @@ SectionGroupEnd
 !insertmacro MUI_LANGUAGE "German"
 
 Function .onInit
-  ${If} ${RunningX64}
-    SectionSetFlags ${SECTION_CORE_X86} 0
-  ${else}
-    IntOp $0 0 | ${SF_RO}
-    SectionSetFlags ${SECTION_CORE_X64} $0
-  ${endif}
+!if "${SETUP_ARCH}" == "aarch64"
+  ${IfNot} ${IsNativeARM64}
+!else
+  ${IfNot} ${IsNativeAMD64}
+!endif
+    MessageBox MB_OK|MB_ICONSTOP "Dieses Setup benötigt Windows auf ${SETUP_ARCH_LABEL}. Bitte das passende Multi-Setup verwenden." /SD IDOK
+    SetErrorLevel 1
+    Abort
+  ${EndIf}
+  InitPluginsDir
+  SetOutPath "$PLUGINSDIR"
+  StrCpy $ARGUMENTS ""
+  StrCpy $JPACKAGE_ARGUMENTS " /norestart"
 FunctionEnd

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-set -ex
+set -euxo pipefail
 
-for NSI in *.nsi; do
-  makensis "${NSI}"
+cd "$(dirname "$0")"
+mkdir -p build
+
+for ARCH in amd64 aarch64; do
+  makensis -WX "-DSETUP_ARCH=${ARCH}" nsis_applejuice_setup.nsi
 done
-
 
