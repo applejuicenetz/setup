@@ -28,4 +28,5 @@ jobs:
                     body: >
                         appleJuice setup
                     files: >
-                        build/
+                        build/appleJuice-windows-amd64.exe
+                        build/appleJuice-windows-aarch64.exe
