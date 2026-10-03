@@ -25,6 +25,11 @@ Core, Java GUI und Collector verwenden jeweils das neueste Release (`latest`).
 Eine feste Core-Version kann beim Build mit
 `makensis -DCORE_VERSION=<tag> nsis_applejuice_setup.nsi` gewählt werden.
 
+Vor dem Download prüft das Setup für die gewählten Komponenten Core, Java GUI
+und Collector, ob alte NSIS-Installationen (Uninstall-Einträge in der 32- und
+64-Bit-Registry) vorhanden sind. In dem Fall bricht es mit Hinweis ab; die alte
+Version muss zuerst deinstalliert werden, wie bei den Einzel-Setups.
+
 Die standardmäßig ausgewählte Komponente „Silent“ verwendet für jpackage
 `/qn /norestart`, für die alten NSIS-Installer weiterhin `/S`.
 Ohne „Silent“ zeigen die Komponenten ihren Installationsdialog; jpackage erhält

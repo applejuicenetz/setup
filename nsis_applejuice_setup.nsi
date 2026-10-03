@@ -2,6 +2,8 @@
 ;Include Modern UI
     !include "MUI2.nsh"
     !include "x64.nsh"
+    !include "Sections.nsh"
+    !include "LogicLib.nsh"
 
 ;--------------------------------
 ; add plugins folder
@@ -89,6 +91,25 @@
     ${EndIf}
 !macroend
 
+!macro CheckLegacyProduct SECTION_ID DISPLAY PRODUCT
+    ${If} ${SectionIsSelected} ${SECTION_ID}
+        !insertmacro CheckLegacyView 32 "${DISPLAY}" "${PRODUCT}"
+        !insertmacro CheckLegacyView 64 "${DISPLAY}" "${PRODUCT}"
+    ${EndIf}
+!macroend
+
+!macro CheckLegacyView VIEW DISPLAY PRODUCT
+    SetRegView ${VIEW}
+    ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "UninstallString"
+    SetRegView 32
+    ${If} $0 != ""
+        DetailPrint "Alte Installation gefunden: ${PRODUCT}"
+        MessageBox MB_OK|MB_ICONSTOP "Alte Installation von ${DISPLAY} gefunden.$\r$\nBitte zuerst das alte Setup deinstallieren und danach dieses Setup erneut starten.$\r$\nDie Installation wird abgebrochen." /SD IDOK
+        SetErrorLevel 1
+        Abort "Alte Installation von ${DISPLAY} gefunden"
+    ${EndIf}
+!macroend
+
 ;--------------------------------
 ;Interface Settings
     !define MUI_ICON "resources\appleJuice.ico"
@@ -109,6 +130,10 @@ Section "Silent" SECTION_SILENT
 
     StrCpy $ARGUMENTS " /S"
     StrCpy $JPACKAGE_ARGUMENTS " /qn /norestart"
+SectionEnd
+
+Section "-Altlasten"
+    Call CheckLegacyInstallations
 SectionEnd
 
 ;--------------------------------
@@ -203,4 +228,12 @@ Function .onInit
   SetOutPath "$PLUGINSDIR"
   StrCpy $ARGUMENTS ""
   StrCpy $JPACKAGE_ARGUMENTS " /norestart"
+FunctionEnd
+
+Function CheckLegacyInstallations
+    !insertmacro CheckLegacyProduct ${SECTION_CORE_X64} "appleJuice Core" "appleJuice Core (x86)"
+    !insertmacro CheckLegacyProduct ${SECTION_CORE_X64} "appleJuice Core" "appleJuice Core (x64)"
+    !insertmacro CheckLegacyProduct ${SECTION_CORE_X64} "appleJuice Core" "appleJuice Core (Beta)"
+    !insertmacro CheckLegacyProduct ${SECTION_GUI_JAVA} "appleJuice JavaGUI" "appleJuice JavaGUI"
+    !insertmacro CheckLegacyProduct ${SECTION_COLLECTOR} "appleJuice Collector" "appleJuice Collector"
 FunctionEnd
