@@ -21,10 +21,8 @@ und Collector aus `applejuicenetz/collector`. Die Dateinamen sind
 `AJCollector-windows-<arch>.exe`; `<arch>` ist je nach Windows-System `amd64`
 oder `aarch64`. Die Architektur wird beim Build festgelegt; es entstehen zwei
 getrennte Multi-Setups. Der Server ist nicht Bestandteil der Multi-Setups.
-Java GUI und Collector verwenden jeweils das neueste stabile Release.
-Der Core verwendet ausdrücklich `0.35.185.89`, weil dieses jpackage-Release
-als Vorabversion veröffentlicht wurde und GitHubs `latest` noch den alten
-NSIS-Core liefert. Eine andere Core-Version kann beim Build mit
+Core, Java GUI und Collector verwenden jeweils das neueste Release (`latest`).
+Eine feste Core-Version kann beim Build mit
 `makensis -DCORE_VERSION=<tag> nsis_applejuice_setup.nsi` gewählt werden.
 
 Die standardmäßig ausgewählte Komponente „Silent“ verwendet für jpackage

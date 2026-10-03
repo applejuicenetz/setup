@@ -32,10 +32,11 @@
 
 ;--------------------------------
 ;Links
-    !ifndef CORE_VERSION
-        !define CORE_VERSION "0.35.185.89"
+    !ifdef CORE_VERSION
+        !define CORE_LINK "https://github.com/applejuicenetz/core/releases/download/${CORE_VERSION}/AJCore-windows-${SETUP_ARCH}.exe"
+    !else
+        !define CORE_LINK "https://github.com/applejuicenetz/core/releases/latest/download/AJCore-windows-${SETUP_ARCH}.exe"
     !endif
-    !define CORE_LINK "https://github.com/applejuicenetz/core/releases/download/${CORE_VERSION}/AJCore-windows-${SETUP_ARCH}.exe"
     !define CORE_NAME "AJCore-windows-${SETUP_ARCH}.exe"
     !define CORE_X64_SIZE 108800
 
