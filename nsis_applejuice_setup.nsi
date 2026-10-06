@@ -46,10 +46,6 @@
     !define GUI_JAVA_NAME "AJCoreGUI-windows-${SETUP_ARCH}.exe"
     !define GUI_JAVA_SIZE 124500
 
-    !define GUI_APFELMUS_LINK "https://github.com/applejuicenetz/gui-apfelmus/releases/latest/download/Apfelmus.setup.exe"
-    !define GUI_APFELMUS_NAME "Apfelmus.setup.exe"
-    !define GUI_APFELMUS_SIZE 1680
-
     !define GUI_APPLEPULP_LINK "https://github.com/applejuicenetz/gui-applepulp/releases/latest/download/ApplePulp.setup.exe"
     !define GUI_APPLEPULP_NAME "ApplePulp.setup.exe"
     !define GUI_APPLEPULP_SIZE 1852
@@ -169,14 +165,6 @@ SectionGroupEnd
 ;Sections Andere
 SectionGroup /e "Andere" SECTION_GROUP_ANDERE
     ;--------------------------------
-    ;appleJuice Apfelmus GUI
-    Section /o "Apfelmus GUI" SECTION_GUI_APFELMUS
-        Addsize ${GUI_APFELMUS_SIZE}
-
-        !insertmacro InstallComponent "${GUI_APFELMUS_LINK}" "${GUI_APFELMUS_NAME}" "$ARGUMENTS"
-    SectionEnd
-
-    ;--------------------------------
     ;appleJuice ApplePulp GUI
     Section /o "ApplePulp GUI" SECTION_GUI_APPLEPULP
         Addsize ${GUI_APPLEPULP_SIZE}
@@ -208,7 +196,6 @@ SectionEnd
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_JAVA} "offizielles JavaGUI"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_COLLECTOR} "Informationen Sammler"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GROUP_ANDERE} "optionale Komponenten"
-!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APFELMUS} "Community GUI"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_APPLEPULP} "Community GUI"
 !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_GUI_JUICER} "Community GUI"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END

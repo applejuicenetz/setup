@@ -35,7 +35,7 @@ Die standardmäßig ausgewählte Komponente „Silent“ verwendet für jpackage
 Ohne „Silent“ zeigen die Komponenten ihren Installationsdialog; jpackage erhält
 weiterhin `/norestart`, damit kein Neustart die weiteren Installationen unterbricht.
 Die Multi-Setups selbst können mit `/S` unbeaufsichtigt laufen.
-Collector, Apfelmus, ApplePulp und Juicer bleiben in beiden Varianten optional,
+Collector, ApplePulp und Juicer bleiben in beiden Varianten optional,
 auch im ARM64-Multi-Setup. Die bestehenden Community-GUI-Installer werden
 unverändert verwendet; ihre Anwendungen laufen auf ARM64 gegebenenfalls unter
 Windows-Emulation, nicht als native ARM64-Builds. Die native
